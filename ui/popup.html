@@ -1,0 +1,99 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="Content-Security-Policy" content="script-src 'self'; object-src 'self';" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>PrimeTrack</title>
+  <link rel="stylesheet" href="popup.css" />
+</head>
+<body>
+  <div class="wrap">
+    <header class="hdr">
+      <div class="app-title">PrimeTrack</div>
+      <div class="badge" id="statusBadge">Idle</div>
+    </header>
+
+    <section class="card">
+      <div class="card-hdr">Timer</div>
+
+      <div class="timer-row">
+        <button id="btnStart" class="btn btn-primary">▶ Start</button>
+        <button id="btnStop" class="btn btn-danger" disabled>⏹ Stop</button>
+        <button id="btnReset" class="btn" disabled>🔄 Reset</button>
+      </div>
+
+      <div id="bigTimer" class="big-timer">00:00:00</div>
+
+      <div class="grid">
+        <div class="grid-item">
+          <label>Project</label>
+          <div class="row">
+            <select id="selProject" class="select"></select>
+            <button id="btnNewProject" class="btn btn-ghost">➕ New project</button>
+            <button id="btnRenameProject" class="btn btn-ghost">✎ Rename</button>
+            <button id="btnArchiveProject" class="btn btn-ghost">🗂 Archive</button>
+          </div>
+        </div>
+        <div class="grid-item">
+          <label>Task</label>
+          <div class="row">
+            <select id="selTask" class="select"></select>
+            <button id="btnNewTask" class="btn btn-ghost">➕ New task</button>
+            <button id="btnEditTaskTime" class="btn btn-ghost">🕒✎ Edit time</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="meta">
+        <div>Active: <span id="activeLabel">—</span></div>
+        <div>
+          Total(Task):
+          <span id="taskTotal">0 min</span>
+          <button id="btnCopyTaskMini" class="btn-mini" title="Copy task minutes">⧉</button>
+        </div>
+        <div>
+          Total(Project):
+          <span id="projectTotal">0 min</span>
+          <button id="btnCopyProjectMini" class="btn-mini" title="Copy project minutes">⧉</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="card">
+      <div class="card-hdr">Recent Project (Pinned)</div>
+      <div id="recentProjectBox" class="recent-box">
+        <div class="dim">No recent project yet.</div>
+      </div>
+    </section>
+
+    <!-- ★ 하단 중앙 Export CSV -->
+    <div class="export-wrap">
+      <button id="btnExport" class="btn btn-export">⬇ Export CSV</button>
+    </div>
+
+    <footer class="ftr">
+      <div class="hint">Tip: Start/Stop = Ctrl + Shift + S, Reset = Ctrl + R</div>
+      <div class="brand">© Prime Video Ops • Digiflex</div>
+    </footer>
+  </div>
+
+  <!-- Edit time modal -->
+  <dialog id="dlgEdit" class="modal">
+    <form method="dialog" class="modal-card">
+      <div class="modal-hdr">Edit Task Time</div>
+      <div class="modal-body">
+        <label for="inpHMS" class="modal-label">HH:MM:SS (absolute or ±delta)</label>
+        <input id="inpHMS" class="input" placeholder="e.g. 00:30:00 or -00:05:00" />
+        <div class="modal-note">Enter absolute time or ±delta. Current total is prefilled.</div>
+      </div>
+      <div class="modal-ftr">
+        <button id="btnEditCancel" class="btn">Cancel</button>
+        <button id="btnEditSave" class="btn btn-primary">Apply</button>
+      </div>
+    </form>
+  </dialog>
+
+  <script src="../src/popup.js" type="module"></script>
+</body>
+</html>

@@ -1,0 +1,14 @@
+{
+  "manifest_version": 3,
+  "name": "PrimeTrack",
+  "version": "0.3.2",
+  "description": "Simple, reliable time tracking for projects and tasks.",
+  "permissions": ["storage", "idle", "clipboardWrite"],
+  "background": { "service_worker": "src/background.js", "type": "module" },
+  "action": { "default_title": "PrimeTrack", "default_popup": "ui/popup.html" },
+  "icons": {
+    "16": "assets/icon16.png",
+    "48": "assets/icon48.png",
+    "128": "assets/icon128.png"
+  }
+}
